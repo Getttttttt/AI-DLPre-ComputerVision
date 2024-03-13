@@ -158,10 +158,6 @@ $$
 
 ![img](https://img-blog.csdnimg.cn/img_convert/e8d2228b770d48b5d830ee57f3b36421.png)
 
-#### Demo
-
-
-
 ### 图像分类与目标检测
 
 #### 理论框架
@@ -258,33 +254,102 @@ $$
 
 #### 应用案例分析：HOI (Human Object Interacting)
 
-HOI的目的是理解场景中人物关系，包括人和物的定位识别，以及交互的判别。人物交互理解对于关系学习，场景理解和动作理解都具有重要的意义。
+HOI的目的是理解场景中人物关系，包括人和物的定位识别，以及交互的判别。人物交互理解对于关系学习，场景理解和动作理解都具有重要的意义。人物交互（Human-Object Interaction）最早来源于动作理解，相关人员发现人周边的被人交互的物体对于人的动作识别能够提供很强的判别信息。![](D:\大学\人工智能与深度学习\课前展示\hotr_pipeline.png)
 
-![hotr_pipeline](D:\orange\HOTR_demo-main\imgs\hotr_pipeline.png)
+##### 简单的识别功能
 
-*Demo*
+1. 基础图像识别模型
+
+https://github.com/xinyu1205/recognize-anything.git
+
+- **卓越的图像识别能力**：RAM++是下一代RAM，可以**高精度识别任何类别**，包括**预定义的常见类别和多样化的开放集类别**。RAM++ 在常见标签类别、不常见标签类别和人机交互短语方面优于现有的 SOTA 图像基础识别模型。
+  - RAM++是一种增强型的记忆增强神经网络（Memory Augmented Neural Network）。RAM++结合了神经网络和外部记忆存储器，其中外部记忆存储器充当了网络的额外存储空间，可以存储大量信息。在每个时间步，RAM++将当前输入和网络的内部状态传递给控制器（Controller），控制器可以读取、写入和更新外部记忆存储器，并生成输出。这样，网络在处理序列数据时不仅可以利用内部状态，还可以利用外部记忆存储器中的信息，从而更有效地捕捉序列中的长期依赖关系和复杂模式。
+- **强大的视觉语义分析**：将 Tag2Text 和 RAM 与本地化模型（Grounding-DINO 和 SAM）相结合，并在Grounded-SAM项目中开发了强大的视觉语义分析管道。
+  - Tag2Text通过对视觉语言模型引入图片标记任务（类似于给一个图片打个多个与图片有关的label）来指导模型更好的学习视觉-语言特征。
+    - ![tag2text_framework](D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\recognize-anything\images\tag2text_framework.png)
+  - RAM结构上与 Tag2Text 相似，Tag2Text 有3个分支，tagging，generation 和 alignment；RAM 只保留了 Tagging 和 Generation 两个，其中 Tagging 分支用来多tags推理，完成识别任务；Generation用来做 image caption任务；Tag2Text 中的alignment是做 Visual-Language Features学习的，在这里被移除了。
+    - ![ram_plus_framework](D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\recognize-anything\images\ram_plus_framework.jpg)
+
+- 识别效果对比：
+
+![ram_grounded_sam](D:\大学\人工智能与深度学习\课前展示\ram_grounded_sam.jpg)
+
+![tagging_results](D:\大学\人工智能与深度学习\课前展示\tagging_results.jpg)
+
+2. Something-else数据集
+
+使用Something-Something数据集，对视频中人与物体交互中每个对象和手的每帧边界框注释。
+
+<video src="D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\862.mp4"></video>
+
+<video src="D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\22983.mp4"></video>
+
+<video src="D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\57082.mp4"></video>
+
+![0027](D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\862\0027.jpg)
+
+![model](D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\figures\model.png)
+
+##### 人与物体的交互判断
+
+HOI模型可以对图片中的人和物体进行识别，并根据方向、位置等特征信息判断人和物体之间的交互关系。
 
 ![01. data_acquisition](D:\大学\人工智能与深度学习\课前展示\01. data_acquisition.jpg)
 
-##### SynHOI
+1. DRG---对人和物体之间的对偶关系进行识别
 
-###### Introduction
+- 利用抽象的空间语义表示来描述每个人物对，并通过双重关系图（一个以人为中心，一个以对象为中心）聚合场景的上下文信息，使用对偶关系图有效地捕捉了场景中的判别线索，以解决局部预测的歧义。
+  ![teaser](D:\大学\人工智能与深度学习\课前展示\teaser.png)
 
+![img](https://www.chengao.vision/DRG/files/iterative_update.png)
 
+![img](https://www.chengao.vision/DRG/files/HICO-DET.jpg)
 
-###### ![img](https://github.com/IDEA-Research/DiffHOI/raw/master/assets/SynHOI_vis.gif)
+- https://github.com/vt-vl-lab/DRG.git
 
-###### Demo
+2. Bongard-HOI
 
-
-
-##### Bongard-HOI
-
-###### Introduction
-
-Bongard-HOI 是一个挑战模型视觉推理能力的数据集，旨在从自然图像中学习和识别人与物体的交互 (HOI)。 它受到经典 Bongard 问题的启发，该问题需要少量概念学习和上下文相关推理。 该数据集包含 1,200 个少样本实例，每个实例由六张图像组成：三张正图和三张负图。 正图像具有共同的 HOI 概念，而负图像与正图像仅在动作标签上有所不同。 该数据集还具有多个测试集，训练和测试 HOI 概念之间有不同程度的重叠，以衡量模型的泛化性能。
+- Introduction：Bongard-HOI 是一个挑战模型视觉推理能力的数据集，旨在从自然图像中学习和识别人与物体的交互 (HOI)。 它受到经典 Bongard 问题的启发，该问题需要少量概念学习和上下文相关推理。 该数据集包含 1,200 个少样本实例，每个实例由六张图像组成：三张正图和三张负图。 正图像具有共同的 HOI 概念，而负图像与正图像仅在动作标签上有所不同。 该数据集还具有多个测试集，训练和测试 HOI 概念之间有不同程度的重叠，以衡量模型的泛化性能。
 
 ![overview.png](https://github.com/NVlabs/Bongard-HOI/blob/master/assets/overview.png?raw=true)
 
-###### Demo
+- https://github.com/NVlabs/Bongard-HOI.git
+
+3. iCAN
+
+- 通过以实例为中心的注意力网络实现人物交互检测
+- https://github.com/vt-vl-lab/iCAN.git
+
+![HOI](D:\大学\人工智能与深度学习\课前展示\HOI.gif)
+
+4. DiffHOI和SynHOI
+
+- **DiffHOI**：第一个利用生成和代表性功能来提升HOI任务性能的框架。
+- **SynHOI**：一个平衡类别、大规模、高多样性的合成 HOI 数据集。
+
+###### ![img](https://github.com/IDEA-Research/DiffHOI/raw/master/assets/SynHOI_vis.gif)
+
+- [GitHub - IDEA-Research/DiffHOI: Official implementation of the paper "Boosting Human-Object Interaction Detection with Text-to-Image Diffusion Model"](https://github.com/IDEA-Research/DiffHOI)
+
+##### 人物交互的分类识别
+
+基于对于人与物体交互的检测，对交互类型进行分类识别。
+
+1. AVA
+
+- AVA数据集: HOIs (human-object, human-human), and pose (body motion) actions
+
+![image-20240312001514763](C:\Users\rita\AppData\Roaming\Typora\typora-user-images\image-20240312001514763.png)
+
+- https://research.google.com/ava/
+
+##### 基于HOI的3D重建与生成
+
+1. ParaHome：将日常家庭活动参数化，实现人与物交互的 3D 生成建模
+
+- https://jlogkim.github.io/parahome/
+
+- 视频演示：https://www.youtube.com/embed/HeXqiK0eGec?si=mtAmctx0JHHYD6Ac （3-24s）
+
+![预告片图片](https://jlogkim.github.io/parahome/static/images/teaser.jpg)
 
