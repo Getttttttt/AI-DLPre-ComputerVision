@@ -2,7 +2,7 @@
 
 ### 1. GAN的基本原理
 
-![image-20240311022112882](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311022112882.png)
+![](./assets/image-20240311022112882.png)
 
 生成对抗网络（GAN）由两部分组成：生成器（Generator, G）和判别器（Discriminator, D）。生成器的目标是生成逼真的数据（如图像），而判别器的目标是区分真实数据和生成器生成的假数据。
 
@@ -14,7 +14,7 @@
 
 针对GAN的目标，原论文给出了如下数学描述，假定用于生成的噪声分布是$p_z(z)$，真实数据分布是$p_x(x)$，同时生成器和辨别器分别为G和D，则GAN的目标可以通过如下公式描述：
 
-![img](https://pic3.zhimg.com/80/v2-f5348a643a4d4bf8bf806108a37e0c3e_1440w.webp)
+![img](./assets/v2-f5348a643a4d4bf8bf806108a37e0c3e_1440w-1710334308558-4-1710334309638-6.webp)
 
 这里的公式形式其实和常见的交叉熵损失函数很像，但要注意没有负号。D(x)表示x来源于真实数据的分布，理想情况下，D(x)=1，logD(x)=0。若是分类器不理想，则D(x)输出越小，logD(x)则会越小。G(z)表示噪声经过生成器后生成的样本，D(G(z))则是分类器认为生成样本属于真实样本的概率，理想情况下这个数值为0，但当性能越不好，D(G(z))越大，log(1-D(G(z)))就会越小。总而言之，后面两项期望的和越大，分类器识别能力越好。 再观察估值函数V(G,D)前面的min/max，就很明显了，最终的目标是求外面的minG，G的目标是让V最小，达到以假乱真的目的；而内部嵌套的maxD，则代表D是在G给定的情况下，最大化V，即给定生成器，得到识别能力最好的分辨器。
 
@@ -29,13 +29,13 @@
 
 效果对比：
 
-![image-20240311024816733](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311024816733.png)
+![image-20240311024816733](./assets/image-20240311024816733.png)
 
 基本原理：
 
-![image-20240311024937143](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311024937143.png)
+![image-20240311024937143](./assets/image-20240311024937143.png)
 
-![image-20240311024946427](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311024946427.png)
+![image-20240311024946427](./assets/image-20240311024946427.png)
 
 DCGAN的生成器通常从一个随机噪声向量开始，通过一系列反卷积层逐渐上采样，直到达到所需的图像尺寸。每一层的输出都通过批量归一化和ReLU激活函数（最后一层通常使用tanh激活函数）。判别器则采用相反的结构，从输入图像开始，通过一系列卷积层逐渐下采样，直到得到一个单一的预测输出。这个输出表示判别器对图像是真实还是生成的判断。在判别器的每一层中，批量归一化和Leaky ReLU激活函数被用来促进稳定的梯度流动。
 
@@ -54,11 +54,11 @@ DCGAN的生成器通常从一个随机噪声向量开始，通过一系列反卷
 
 基本原理：
 
-![image-20240311030018393](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311030018393.png)
+![image-20240311030018393](./assets/image-20240311030018393.png)
 
-![image-20240313202117537](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240313202117537.png)
+![image-20240313202117537](./assets/image-20240313202117537.png)
 
-![img](https://pic1.zhimg.com/80/v2-6485767008fb6a156e5be90e64c651e4_1440w.webp)
+![img](./assets/v2-6485767008fb6a156e5be90e64c651e4_1440w.webp)
 
 ==**删除条件向量y就是GAN**==
 
@@ -84,13 +84,13 @@ cGAN是一种生成对抗网络，它在传统GAN的基础上引入了额外的�
 
 > 应用Demo：为人脸图片换表情，注意不换脸，就是表情（换啥表情是自己学的，控制不了）（代码已下载，未运行），这个地方可以用我们自己的脸！（[GANimation](https://link.zhihu.com/?target=https%3A//github.com/albertpumarola/GANimation)）
 
-![img](https://pic2.zhimg.com/v2-a384750875ba8d9ee6e8a3372731ee25_r.jpg)
+![img](./assets/v2-a384750875ba8d9ee6e8a3372731ee25_r.jpg)
 
-![img](https://pic1.zhimg.com/v2-85e6042bdeea6ea9fef28b1d15cf7af8_r.jpg)
+![img](./assets/v2-85e6042bdeea6ea9fef28b1d15cf7af8_r.jpg)
 
-![img](https://pic2.zhimg.com/v2-a384750875ba8d9ee6e8a3372731ee25_r.jpg)
+![img](./assets/v2-a384750875ba8d9ee6e8a3372731ee25_r-1710334361144-20.jpg)
 
-![img](https://pic4.zhimg.com/v2-4e8cecba44a1b9093a82c4fd676ed8df_r.jpg)
+![img](./assets/v2-4e8cecba44a1b9093a82c4fd676ed8df_r.jpg)
 
 ### 4. starGAN
 
@@ -122,13 +122,13 @@ starGAN 是 Yunjey Choi 等人于 17年11月 提出的一个模型。该模型�
 
 StyleGAN 的网络结构包含两个部分，第一个是**Mapping network**，即下图 (b)中的左部分，由隐藏变量 z 生成 中间隐藏变量 w的过程，这个 w 就是用来控制生成图像的style，即风格。第二个是**Synthesis network**，它的作用是生成图像，创新之处在于给每一层子网络都喂了 A 和 B，A 是由 w 转换得到的仿射变换，用于控制生成图像的风格，B 是转换后的随机噪声，用于丰富生成图像的细节，即每个卷积层都能根据输入的A来调整**"style"**。整个网络结构还是保持了 **PG-GAN （progressive growing GAN）** 的结构。
 
-![image-20240311031108513](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311031108513.png)
+![image-20240311031108513](./assets/image-20240311031108513.png)
 
 论文效果（AI换脸）：
 
-![sample_mixing_ffhq_new](E:\c盘桌面\大三学习\AI&DL\demo_style_GAN\style-based-gan-pytorch\doc\sample_mixing_ffhq_new.png)
+![sample_mixing_ffhq_new](./assets/sample_mixing_ffhq_new.png)
 
-![sample_mixing_ffhq](E:\c盘桌面\大三学习\AI&DL\demo_style_GAN\style-based-gan-pytorch\doc\sample_mixing_ffhq.png)
+![sample_mixing_ffhq](./assets/sample_mixing_ffhq.png)
 
 > 源代码已下载，但是还没有运行，但是这个就算运行了效果也是如上的
 
@@ -145,7 +145,7 @@ StyleGAN 的网络结构包含两个部分，第一个是**Mapping network**，�
 
 CycleGAN由两个生成器和两个鉴别器组成，它们学习变换函数F和G。此结构显示在下图中：
 
-![img](./assets/v2-705a5322f34e4cbebc0050714db42941_1440w.png)
+![img](./assets/v2-705a5322f34e4cbebc0050714db42941_1440w-1710334395131-30.png)
 
 循环变换一致性
 
@@ -173,7 +173,7 @@ CycleGAN由两个生成器和两个鉴别器组成，它们学习变换函数F�
 
 假如两个域X（图片）和Y（另外一个风格的图片），针对X有一个生成器GX和一个判别器DX，针对Y有一个生成器GY和一个判别器DY，GX把X中的一个图片生成假图片，但是生成的假图片在Y域风格中，DY会进行判断这里是哪里的假图片，GY把假图片又转换回去，注意新的假图片落到X中，DX也是会判断，但是新的假图片肯定与原图不一样，现在计算这两种图片的“损失”（循环一致性损失），于是就开始慢慢训练。。。
 
-![image-20240311040835967](C:\Users\dell\AppData\Roaming\Typora\typora-user-images\image-20240311040835967.png)
+![image-20240311040835967](./assets/image-20240311040835967.png)
 
 （上面这个图只是为了帮助理解，不要放在PPT里面）
 
