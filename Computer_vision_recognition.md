@@ -280,11 +280,7 @@ https://github.com/xinyu1205/recognize-anything.git
 
 使用Something-Something数据集，对视频中人与物体交互中每个对象和手的每帧边界框注释。
 
-<video src="D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\862.mp4"></video>
-
-<video src="D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\22983.mp4"></video>
-
-<video src="D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\57082.mp4"></video>
+展示视频：对应asset中的“862” “57082” “22983”
 
 ![0027](D:\大学\人工智能与深度学习\课前展示\AI-DLPre-ComputerVision\demo_HOI\something_else\annotated_videos\862\0027.jpg)
 
@@ -320,12 +316,16 @@ HOI模型可以对图片中的人和物体进行识别，并根据方向、位�
 - 通过以实例为中心的注意力网络实现人物交互检测
 - https://github.com/vt-vl-lab/iCAN.git
 
+（如果word里的动图不行的话，asset里面也存了：“chatting.gif”）
+
 ![HOI](D:\大学\人工智能与深度学习\课前展示\HOI.gif)
 
 4. DiffHOI和SynHOI
 
 - **DiffHOI**：第一个利用生成和代表性功能来提升HOI任务性能的框架。
 - **SynHOI**：一个平衡类别、大规模、高多样性的合成 HOI 数据集。
+
+（如果word里的动图不行的话，asset里面也存了：“SynHOI_vis.gif”）
 
 ###### ![img](https://github.com/IDEA-Research/DiffHOI/raw/master/assets/SynHOI_vis.gif)
 
@@ -349,7 +349,9 @@ HOI模型可以对图片中的人和物体进行识别，并根据方向、位�
 
 - https://jlogkim.github.io/parahome/
 
-- 视频演示：https://www.youtube.com/embed/HeXqiK0eGec?si=mtAmctx0JHHYD6Ac （3-24s）
+- 视频演示：https://www.youtube.com/embed/HeXqiK0eGec?si=mtAmctx0JHHYD6Ac （asset中的“3D还原”）
+
+  <video src="D:\大学\人工智能与深度学习\课前展示\3D还原.mp4"></video>
 
 ![预告片图片](https://jlogkim.github.io/parahome/static/images/teaser.jpg)
 
